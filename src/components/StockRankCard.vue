@@ -2,12 +2,10 @@
   <div class="stock-card">
     <div class="rank">{{ rank }}</div>
     <div class="content">
-      <div class="name">{{ name }}</div>
+      <div class="name">{{ stock.name }}</div>
       <div class="weather">
-        <Weather />
-        <span>
-          {{ weather }}
-        </span>
+        <Weather v-bind:percentage="percentage" />
+        <span> {{ percentage }} % </span>
       </div>
     </div>
     <div class="tail red"></div>
@@ -21,8 +19,12 @@ export default {
   name: "StockRankCard",
   props: {
     rank: Number,
-    name: String,
-    weather: Number
+    stock: Object
+  },
+  computed: {
+    percentage() {
+      return (this.stock.label * 100).toFixed(2);
+    }
   },
   components: {
     Weather

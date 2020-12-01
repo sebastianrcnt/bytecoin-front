@@ -2,7 +2,17 @@
   <div>
     <Card title="주식 게임" color="purple"> </Card>
     <Card title="NAVER" color="green">
-      <StockRankCard :rank="1" name="삼성전자" :weather="12" />
+      <section v-if="loading">
+        Loading...
+      </section>
+      <section v-else>
+        <StockRankCard
+          v-for="(stock, index) in top5Stocks"
+          :key="index"
+          :rank="index + 1"
+          :stock="stock"
+        />
+      </section>
     </Card>
   </div>
 </template>
@@ -10,10 +20,27 @@
 <script>
 import Card from "@/components/Card.vue";
 import StockRankCard from "@/components/StockRankCard.vue";
+import { getTop5Stocks } from "@/fetchers/fetchers.js";
 
 export default {
   name: "Home",
-  components: { Card, StockRankCard }
+  components: { Card, StockRankCard },
+  data() {
+    return {
+      top5Stocks: [],
+      loading: true
+    };
+  },
+  mounted() {
+    getTop5Stocks()
+      .then(({ data }) => {
+        this.top5Stocks = data.stocks;
+        this.loading = false;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 };
 </script>
 

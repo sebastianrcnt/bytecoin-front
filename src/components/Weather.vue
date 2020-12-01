@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: "Weather"
+  name: "Weather",
+  props: {
+    percentage: Number
+  }
 };
 </script>
 
