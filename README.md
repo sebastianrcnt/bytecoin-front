@@ -1,24 +1,22 @@
 # bytecoin-front
 
-## Project setup
-```
-npm install
-```
+- This repo is a Vue.js frontend application for bytecoin
+- API/Features Repository: [Bytecoin](https://github.com/sebastianrcnt/bytecoin.git)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Features To Add
 
-### Compiles and minifies for production
-```
-npm run build
-```
+1. Stock Searching
 
-### Lints and fixes files
-```
-npm run lint
-```
+   - we can search stocks by their name or stockId
+     - `/api/stocks?query=삼성전자`
+   - returns list of stocks
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+2. Favorites
+   - add bookmarks by user
+
+## Features Not Implemented
+
+### Backend
+
+1. Stock Price API
+   - add price field to stock object

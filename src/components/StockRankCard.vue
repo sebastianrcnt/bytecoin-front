@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     percentage() {
-      return (this.stock.label * 100).toFixed(2);
+      return (this.stock.label * 100).toFixed(2) * 1;
     }
   },
   components: {
