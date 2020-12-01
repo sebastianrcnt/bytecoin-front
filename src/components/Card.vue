@@ -1,19 +1,14 @@
 <template>
-  <div>
-    <Card title="주식 게임" color="purple"> </Card>
-    <Card title="NAVER" color="green">
-      <StockRankCard :rank="1" name="삼성전자" :weather="12" />
-    </Card>
+  <div class="card" v-bind:class="color">
+    <div class="card-title">{{ title }}</div>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import Card from "@/components/Card.vue";
-import StockRankCard from "@/components/StockRankCard.vue";
-
 export default {
-  name: "Home",
-  components: { Card, StockRankCard }
+  name: "Card",
+  props: ["title", "color"]
 };
 </script>
 
@@ -34,8 +29,6 @@ export default {
     margin-bottom: 19px;
   }
 
-  &.closed {
-    min-height: 100px;
-  }
+  min-height: 100px;
 }
 </style>
