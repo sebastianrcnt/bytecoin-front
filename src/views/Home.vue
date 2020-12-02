@@ -17,6 +17,7 @@
           :key="index"
           :rank="index + 1"
           :stock="stock"
+          @click.native="navigateToStockDetail(stock.code)"
         />
       </Card>
     </template>

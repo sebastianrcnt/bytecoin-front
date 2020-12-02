@@ -3,18 +3,14 @@
     <div class="rank">{{ rank }}</div>
     <div class="content">
       <div class="name">{{ stock.name }}</div>
-      <div class="weather">
-        <Weather v-bind:percentage="percentage" />
-        <span> {{ percentage }} % </span>
-      </div>
+      <i class="weather wi" :class="className"></i>
     </div>
     <div class="tail red"></div>
   </div>
 </template>
 
 <script>
-import Weather from "@/components/Weather.vue";
-
+import { getClassName } from "@/utils.js";
 export default {
   name: "StockRankCard",
   props: {
@@ -24,11 +20,12 @@ export default {
   computed: {
     percentage() {
       return (this.stock.label * 100).toFixed(2) * 1;
+    },
+    className() {
+      return getClassName(this.stock.label);
     }
   },
-  components: {
-    Weather
-  }
+  components: {}
 };
 </script>
 
@@ -69,20 +66,8 @@ export default {
     }
 
     .weather {
-      padding: 10px;
-      font-weight: 300;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: stretch;
-      letter-spacing: 0.092px;
-
-      display: flex;
-      flex-direction: column;
-
-      span {
-        margin-top: 2px;
-      }
+      font-size: 1.8rem;
+      margin-right: 10px;
     }
   }
 

@@ -1,14 +1,21 @@
 <template>
   <div>
-    <i class="weather wi wi-night-alt-snow-wind"></i>
+    <i class="weather wi" :class="className"></i>
   </div>
 </template>
 
 <script>
+import { getClassName } from "@/utils.js";
+
 export default {
   name: "Weather",
   props: {
-    percentage: Number
+    label: Number
+  },
+  computed: {
+    className() {
+      return getClassName(this.label);
+    }
   }
 };
 </script>
@@ -16,6 +23,7 @@ export default {
 <style lang="scss" scoped>
 /* @import "@/scss/weather-icons/sass/weather-icons.scss"; */
 .weather {
-  font-size: 1.5rem;
+  font-size: 5rem;
+  margin-bottom: 2.2rem;
 }
 </style>

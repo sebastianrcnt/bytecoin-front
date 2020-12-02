@@ -5,23 +5,13 @@
     </template>
     <!-- Comments Section -->
     <template v-else>
-      <Card title="주식 상세" color="grey-1">
-        <div class="grid-container">
-          <Statistics :value="stock.name" description="이름" />
-          <Statistics :value="stock.code" description="코드" />
-          <Statistics
-            :value="(stock.label * 100).toFixed(2)"
-            description="긍정도"
-            unit="%"
-          />
-          <Statistics
-            :value="stock.numPosts"
-            description="관심도(댓글수)"
-            unit="개"
-          />
-          <Statistics value="" description="" />
-          <Statistics value="" description="" />
-        </div>
+      <Card color="grey-1" class="stock-info-card">
+        <div class="stock-name">{{ stock.name }}</div>
+        <div class="stock-code">({{ stock.code }})</div>
+        <!-- Weather -->
+        <Weather :label="stock.label" />
+        <div class="stock-label">{{ (stock.label * 100).toFixed(2) }}%</div>
+        <div class="stock-num-posts">댓글수 {{ stock.numPosts }}개</div>
       </Card>
       <Card title="NAVER" color="green">
         <template v-for="(comment, index) in stock.posts">
@@ -35,14 +25,14 @@
 <script>
 import Card from "@/components/Card.vue";
 import CommentCard from "@/components/CommentCard.vue";
-import Statistics from "../components/Statistics.vue";
+import Weather from "@/components/Weather.vue";
 import { getStockById } from "@/fetchers/fetchers.js";
 import Spinner from "@/components/Spinner.vue";
 
 export default {
   name: "StockDetail",
   props: ["id"],
-  components: { Card, CommentCard, Statistics, Spinner },
+  components: { Card, CommentCard, Spinner, Weather },
   data() {
     return {
       loading: true,
@@ -86,9 +76,28 @@ export default {
   }
 }
 
-.grid-container {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(2, 1fr);
+.stock-info-card {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  .stock-name {
+    font-size: 1.8rem;
+  }
+
+  .stock-code {
+    font-size: 0.8rem;
+  }
+
+  .stock-label {
+    font-size: 1.1rem;
+  }
+
+  .stock-num-posts {
+    font-size: 0.8rem;
+  }
 }
 </style>
