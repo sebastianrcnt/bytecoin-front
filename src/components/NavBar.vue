@@ -1,6 +1,7 @@
 <template>
   <div class="nav-bar">
     <img class="logo" src="@/assets/logo.png" alt="" />
+    <img src="@/assets/search.svg" class="search" />
   </div>
 </template>
 
@@ -19,12 +20,20 @@ export default {
   align-items: center;
   justify-content: center;
 
+
   padding-top: 8px;
   padding-bottom: 8px;
 
   img.logo {
     object-fit: cover;
-    height: 100%;
+    height: 80%;
+  }
+
+  .search {
+    position: absolute;
+    right: $side-margin + 10px;
+    object-fit: cover;
+    transform: scale(1.4);
   }
 }
 </style>

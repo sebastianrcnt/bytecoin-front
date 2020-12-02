@@ -81,7 +81,7 @@ export default {
       flex-direction: column;
 
       span {
-        margin-top: 5px;
+        margin-top: 2px;
       }
     }
   }

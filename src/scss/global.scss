@@ -1,6 +1,5 @@
 * {
   margin: 0;
-  font-family: sans-serif;
 }
 
 @mixin inner-card() {
@@ -21,7 +20,7 @@
   .card-title {
     color: white;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: bold;
     line-height: 22px;
     letter-spacing: 1.092px;
     margin-bottom: 19px;
