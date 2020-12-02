@@ -20,7 +20,6 @@ export default {
   align-items: center;
   justify-content: center;
 
-
   padding-top: 8px;
   padding-bottom: 8px;
 
