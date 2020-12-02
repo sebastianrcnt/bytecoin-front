@@ -10,3 +10,7 @@ export async function getStockHistory(stockId) {
   console.log(stockId);
   return {};
 }
+
+export async function getStockById(stockId) {
+  return axios.get(`api/stocks/${stockId}`);
+}

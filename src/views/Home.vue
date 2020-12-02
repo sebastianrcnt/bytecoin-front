@@ -1,42 +1,37 @@
 <template>
   <div>
-    <Card title="Top 5" color="purple">
-      <section v-if="loading">
-        Loading...
-      </section>
-      <section v-else>
+    <Spinner :loading="loading" />
+    <template v-if="!loading">
+      <Card title="Top 5" color="purple">
+        <StockRankCard
+          v-for="(stock, index) in top5Stocks"
+          :key="index"
+          :rank="index + 1"
+          :stock="stock"
+          @click.native="navigateToStockDetail(stock.code)"
+        />
+      </Card>
+      <Card title="관심 종목" color="green">
         <StockRankCard
           v-for="(stock, index) in top5Stocks"
           :key="index"
           :rank="index + 1"
           :stock="stock"
         />
-      </section>
-    </Card>
-    <Card title="관심 종목" color="green">
-      <section v-if="loading">
-        Loading...
-      </section>
-      <section v-else>
-        <StockRankCard
-          v-for="(stock, index) in top5Stocks"
-          :key="index"
-          :rank="index + 1"
-          :stock="stock"
-        />
-      </section>
-    </Card>
+      </Card>
+    </template>
   </div>
 </template>
 
 <script>
 import Card from "@/components/Card.vue";
 import StockRankCard from "@/components/StockRankCard.vue";
+import Spinner from "@/components/Spinner.vue";
 import { getTop5Stocks } from "@/fetchers/fetchers.js";
 
 export default {
   name: "Home",
-  components: { Card, StockRankCard },
+  components: { Card, StockRankCard, Spinner },
   data() {
     return {
       top5Stocks: [],
@@ -52,6 +47,11 @@ export default {
       .catch(error => {
         console.log(error);
       });
+  },
+  methods: {
+    navigateToStockDetail(stockId) {
+      this.$router.push(`/stocks/${stockId}`);
+    }
   }
 };
 </script>

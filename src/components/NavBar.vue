@@ -1,13 +1,19 @@
 <template>
   <div class="nav-bar">
     <img class="logo" src="@/assets/logo.png" alt="" />
+    <img src="@/assets/menu.png" class="menu" @click="toggleDrawer()" />
     <img src="@/assets/search.svg" class="search" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  methods: {
+    toggleDrawer() {
+      this.$emit("toggleDrawer");
+    }
+  }
 };
 </script>
 
@@ -28,11 +34,20 @@ export default {
     height: 80%;
   }
 
+  .menu {
+    position: absolute;
+    left: $side-margin + 10px;
+    object-fit: cover;
+    /* transform: scale(1.4); */
+    height: 30px;
+  }
+
   .search {
     position: absolute;
     right: $side-margin + 10px;
     object-fit: cover;
-    transform: scale(1.4);
+    /* transform: scale(1.4); */
+    height: 30px;
   }
 }
 </style>

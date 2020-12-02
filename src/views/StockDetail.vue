@@ -1,35 +1,65 @@
 <template>
   <div>
-    <!-- Price Section -->
-    <PriceHistoryCard title="OO전자">
-      <PriceHistoryGraph :chart-data="{}" />
-    </PriceHistoryCard>
+    <template v-if="loading">
+      <Spinner :loading="true" />
+    </template>
     <!-- Comments Section -->
-    <Card title="NAVER" color="green">
-      <CommentCard />
-    </Card>
+    <template v-else>
+      <Card title="주식 상세" color="grey-1">
+        <div class="grid-container">
+          <Statistics :value="stock.name" description="이름" />
+          <Statistics :value="stock.code" description="코드" />
+          <Statistics
+            :value="(stock.label * 100).toFixed(2)"
+            description="긍정도"
+            unit="%"
+          />
+          <Statistics
+            :value="stock.numPosts"
+            description="관심도(댓글수)"
+            unit="개"
+          />
+          <Statistics value="" description="" />
+          <Statistics value="" description="" />
+        </div>
+      </Card>
+      <Card title="NAVER" color="green">
+        <template v-for="(comment, index) in stock.posts">
+          <CommentCard :comment="comment" :key="index" />
+        </template>
+      </Card>
+    </template>
   </div>
 </template>
 
 <script>
 import Card from "@/components/Card.vue";
-import PriceHistoryCard from "@/components/PriceHistoryCard.vue";
 import CommentCard from "@/components/CommentCard.vue";
-import PriceHistoryGraph from "@/components/PriceHistoryGraph.vue";
-// import { getTop5Stocks } from "@/fetchers/fetchers.js";
+import Statistics from "../components/Statistics.vue";
+import { getStockById } from "@/fetchers/fetchers.js";
+import Spinner from "@/components/Spinner.vue";
 
 export default {
   name: "StockDetail",
-  components: { Card, CommentCard, PriceHistoryCard, PriceHistoryGraph },
+  props: ["id"],
+  components: { Card, CommentCard, Statistics, Spinner },
   data() {
     return {
-      chartData: {},
-      top5Stocks: [],
-      loading: true
+      loading: true,
+      stock: {
+        comments: []
+      }
     };
   },
-  mounted() {
-    
+  created() {
+    getStockById(this.$route.params.id)
+      .then(({ data }) => {
+        this.stock = data.stock;
+        this.loading = false;
+      })
+      .catch(() => {
+        alert("Error");
+      });
   }
 };
 </script>
@@ -54,5 +84,11 @@ export default {
   &.closed {
     min-height: 100px;
   }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 </style>

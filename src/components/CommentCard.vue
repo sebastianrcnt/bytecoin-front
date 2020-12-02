@@ -1,9 +1,20 @@
 <template>
   <div class="comment-card">
-    <img class="thumbs" src="@/assets/thumbs_up.svg" alt="" />
+    <img
+      v-if="comment.label > 0.5"
+      class="thumbs"
+      src="@/assets/thumbs_up.svg"
+      alt=""
+    />
+    <img
+      v-if="!(comment.label > 0.5)"
+      class="thumbs"
+      src="@/assets/thumbs_down.svg"
+      alt=""
+    />
     <div class="content">
       <span class="title">{{ comment.title }} </span>
-      <span class="detail">{{ comment.detail }}</span>
+      <span class="detail">{{ limitToLine(comment.content, 40) }}</span>
     </div>
   </div>
 </template>
@@ -17,9 +28,18 @@ export default {
       default: function() {
         return {
           title: "삼전 사면 망할 일 없다",
-          detail: "꼬우면 사던가 ㅋㅋ"
+          content: "꼬우면 사던가 ㅋㅋ"
         };
       }
+    }
+  },
+  methods: {
+    limitToLine(text, limit) {
+      let result = text.slice(0, limit);
+      if (text.length >= limit) {
+        result += "...";
+      }
+      return result;
     }
   }
 };
@@ -49,6 +69,7 @@ export default {
       font-weight: bold;
       font-size: 1rem;
     }
+
     .detail {
       font-weight: normal;
       font-size: 0.75rem;
