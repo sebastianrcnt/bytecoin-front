@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import StockDetail from "../views/StockDetail.vue";
-import Login from "../views/Login.vue";
+import Game from "../views/Game.vue";
 
 Vue.use(VueRouter);
 
@@ -18,9 +18,9 @@ const routes = [
     component: StockDetail
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login
+    path: "/game",
+    name: "Game",
+    component: Game
   }
 ];
 

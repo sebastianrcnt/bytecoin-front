@@ -28,7 +28,7 @@
 import Card from "@/components/Card.vue";
 import StockRankCard from "@/components/StockRankCard.vue";
 import Spinner from "@/components/Spinner.vue";
-import { getTop5Stocks } from "@/fetchers/fetchers.js";
+import { getTop5Stocks } from "@/api/fetchers.js";
 
 export default {
   name: "Home",

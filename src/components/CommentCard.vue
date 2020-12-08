@@ -4,13 +4,13 @@
       v-if="comment.label > 0.5"
       class="thumbs"
       src="@/assets/thumbs_up.svg"
-      alt=""
+      @click="$emit('report-down')"
     />
     <img
       v-if="!(comment.label > 0.5)"
       class="thumbs"
       src="@/assets/thumbs_down.svg"
-      alt=""
+      @click="$emit('report-up')"
     />
     <div class="content">
       <span class="title">{{ comment.title }} </span>
@@ -28,7 +28,8 @@ export default {
       default: function() {
         return {
           title: "삼전 사면 망할 일 없다",
-          content: "꼬우면 사던가 ㅋㅋ"
+          content: "꼬우면 사던가 ㅋㅋ",
+          alert: alert
         };
       }
     }

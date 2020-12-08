@@ -14,8 +14,13 @@
         <div class="stock-num-posts">댓글수 {{ stock.numPosts }}개</div>
       </Card>
       <Card title="NAVER" color="green">
-        <template v-for="(comment, index) in stock.posts">
-          <CommentCard :comment="comment" :key="index" />
+        <template v-for="(comment, index) in comments">
+          <CommentCard
+            :comment="comment"
+            :key="index"
+            @report-up="handleReportUp(comment.id)"
+            @report-down="handleReportDown(comment.id)"
+          />
         </template>
       </Card>
     </template>
@@ -26,7 +31,8 @@
 import Card from "@/components/Card.vue";
 import CommentCard from "@/components/CommentCard.vue";
 import Weather from "@/components/Weather.vue";
-import { getStockById } from "@/fetchers/fetchers.js";
+import { getStockById } from "@/api/fetchers.js";
+import { reportUp, reportDown } from "@/api/posters.js";
 import Spinner from "@/components/Spinner.vue";
 
 export default {
@@ -36,20 +42,46 @@ export default {
   data() {
     return {
       loading: true,
-      stock: {
-        comments: []
-      }
+      stock: {},
+      comments: []
     };
   },
   created() {
     getStockById(this.$route.params.id)
       .then(({ data }) => {
+        this.comments = data.stock.posts.slice(0, 20);
         this.stock = data.stock;
         this.loading = false;
+        this.sortComment();
       })
-      .catch(() => {
+      .catch(error => {
         alert("Error");
+        console.log(error);
       });
+  },
+  methods: {
+    sortComment() {
+      this.comments.sort((a, b) => b.label - a.label);
+    },
+    flipComment(commentId) {
+      this.comments = this.comments.map(comment => {
+        if (comment.id === commentId) {
+          comment.label = 1 - comment.label;
+          return comment;
+        } else {
+          return comment;
+        }
+      });
+      this.sortComment();
+    },
+    handleReportUp(commentId) {
+      reportUp(this.stock.code);
+      this.flipComment(commentId);
+    },
+    handleReportDown(commentId) {
+      reportDown(this.stock.code);
+      this.flipComment(commentId);
+    }
   }
 };
 </script>

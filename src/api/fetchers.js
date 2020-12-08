@@ -6,9 +6,8 @@ export async function getTop5Stocks() {
   return axios.get("api/stocks/top");
 }
 
-export async function getStockHistory(stockId) {
-  console.log(stockId);
-  return {};
+export async function getGameInfo() {
+  return axios.get("api/game/info");
 }
 
 export async function getStockById(stockId) {

@@ -4,7 +4,7 @@
     <Drawer :direction="'left'" :exist="true" ref="drawer" class="drawer">
       <h2 @click="toggleDrawer()"><router-link to="/">Home</router-link></h2>
       <h2 @click="toggleDrawer()">
-        <router-link to="/login">Login</router-link>
+        <router-link to="/game">Game</router-link>
       </h2>
     </Drawer>
     <router-view />
