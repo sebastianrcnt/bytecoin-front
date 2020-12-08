@@ -2,19 +2,21 @@ export const WeatherMap = [
   {
     range: { start: 0, end: 0.4 },
     iconClassNames: [
-      "wi-ligntning",
+      // "wi-lightning"
       "wi-storm-showers",
-      "wi-thunderstorm",
-      "wi-tsunami"
+      // "wi-thunderstorm",
+      // "wi-tsunami"
     ]
   },
   {
     range: { start: 0.45, end: 0.475 },
-    iconClassNames: ["wi-rain", "wi-windy"]
+    iconClassNames: ["wi-rain"]
+    // iconClassNames: ["wi-rain", "wi-windy"]
   },
   {
     range: { start: 0.475, end: 0.525 },
-    iconClassNames: ["wi-cloudy-windy", "wi-sleet", "wi-fog"]
+    // iconClassNames: ["wi-cloudy-windy", "wi-sleet", "wi-fog"]
+    iconClassNames: ["wi-cloudy-windy"]
   }, // Windy
   {
     range: { start: 0.525, end: 0.55 },

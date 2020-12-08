@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .drawer h2 {
   margin-left: 20px;
   margin-top: 10px;
@@ -44,5 +44,11 @@ export default {
     text-decoration: none;
     color: black;
   }
+}
+
+.lds-facebook {
+  position: fixed;
+  top: calc(50vh - 32px);
+  left: calc(50vw - 32px);
 }
 </style>

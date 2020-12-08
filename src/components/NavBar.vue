@@ -2,7 +2,11 @@
   <div class="nav-bar">
     <img class="logo" src="@/assets/logo.png" alt="" />
     <img src="@/assets/menu.png" class="menu" @click="toggleDrawer()" />
-    <img src="@/assets/search.svg" class="search" />
+    <img
+      src="@/assets/search.svg"
+      class="search"
+      @click="$router.push('/search')"
+    />
   </div>
 </template>
 

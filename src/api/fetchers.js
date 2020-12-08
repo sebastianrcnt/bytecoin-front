@@ -13,3 +13,7 @@ export async function getGameInfo() {
 export async function getStockById(stockId) {
   return axios.get(`api/stocks/${stockId}`);
 }
+
+export async function searchStock(query) {
+  return axios.get(`api/stocks/search?q=${query}`);
+}

@@ -5,11 +5,11 @@
       <div class="name">
         {{ stock.name }}
       </div>
-      <div class="keywords">
+      <div class="keywords" v-if="stock.keywords">
         {{ stock.keywords.join(",") }}
       </div>
     </div>
-    <div class="weather">
+    <div class="weather" v-if="stock.label">
       <i class="wi" :class="className"></i>
     </div>
     <div class="tail red"></div>
@@ -37,6 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  background: white;
+}
+
 .stock-card {
   @include inner-card();
   min-height: 58px;
@@ -45,6 +49,7 @@ export default {
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
+  margin-top: 10px;
   margin-bottom: 10px;
 
   .rank {
@@ -67,7 +72,7 @@ export default {
     .name {
       letter-spacing: 0.092px;
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       line-height: 26px;
       /* flex: 1; */
     }
@@ -83,9 +88,6 @@ export default {
     margin-right: 10px;
     justify-content: center;
     align-items: center;
-
-    i {
-    }
   }
 
   .tail {
