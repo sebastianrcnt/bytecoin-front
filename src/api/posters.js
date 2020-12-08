@@ -2,12 +2,12 @@ import axios from "axios";
 const api = process.env.VUE_APP_API_URL;
 axios.defaults.baseURL = api;
 
-export async function reportUp(stockId) {
-  return axios.post(`api/report/posts/${stockId}`, { value: 1 });
+export async function reportUp(postId) {
+  return axios.post(`api/report/posts/${postId}`, { value: 1 });
 }
 
-export async function reportDown(stockId) {
-  return axios.post(`api/report/posts/${stockId}`, { value: -1 });
+export async function reportDown(postId) {
+  return axios.post(`api/report/posts/${postId}`, { value: -1 });
 }
 
 export async function buyStock(stockId, count) {

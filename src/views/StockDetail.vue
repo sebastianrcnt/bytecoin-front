@@ -18,8 +18,8 @@
           <CommentCard
             :comment="comment"
             :key="index"
-            @report-up="handleReportUp(comment.id)"
-            @report-down="handleReportDown(comment.id)"
+            @report-up="handleReportUp(comment['id'])"
+            @report-down="handleReportDown(comment['id'])"
           />
         </template>
       </Card>
@@ -75,11 +75,11 @@ export default {
       this.sortComment();
     },
     handleReportUp(commentId) {
-      reportUp(this.stock.code);
+      reportUp(commentId);
       this.flipComment(commentId);
     },
     handleReportDown(commentId) {
-      reportDown(this.stock.code);
+      reportDown(commentId);
       this.flipComment(commentId);
     }
   }
