@@ -11,15 +11,6 @@
           @click.native="navigateToStockDetail(stock.code)"
         />
       </Card>
-      <Card title="관심 종목" color="green">
-        <StockRankCard
-          v-for="(stock, index) in top5Stocks"
-          :key="index"
-          :rank="index + 1"
-          :stock="stock"
-          @click.native="navigateToStockDetail(stock.code)"
-        />
-      </Card>
     </template>
   </div>
 </template>

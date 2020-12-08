@@ -2,8 +2,15 @@
   <div class="stock-card">
     <div class="rank">{{ rank }}</div>
     <div class="content">
-      <div class="name">{{ stock.name }}</div>
-      <i class="weather wi" :class="className"></i>
+      <div class="name">
+        {{ stock.name }}
+      </div>
+      <div class="keywords">
+        {{ stock.keywords.join(",") }}
+      </div>
+    </div>
+    <div class="weather">
+      <i class="wi" :class="className"></i>
     </div>
     <div class="tail red"></div>
   </div>
@@ -53,21 +60,31 @@ export default {
   .content {
     flex: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: left;
 
     .name {
       letter-spacing: 0.092px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 1.5rem;
       line-height: 26px;
-      flex: 1;
+      /* flex: 1; */
     }
 
-    .weather {
-      font-size: 1.8rem;
-      margin-right: 10px;
+    .keywords {
+      font-size: 0.8rem;
+    }
+  }
+
+  .weather {
+    display: flex;
+    font-size: 1.8rem;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+
+    i {
     }
   }
 
