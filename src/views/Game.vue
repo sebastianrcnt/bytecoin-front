@@ -201,9 +201,10 @@ export default {
         .catch(err => {
           alert("알 수 없는 오류가 발생했습니다.");
           console.log(err);
-        }).finally(() => {
-          this.loading = false;
         })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     handleProceedButtonClick() {
       proceedGame()

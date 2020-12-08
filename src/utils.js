@@ -3,7 +3,7 @@ export const WeatherMap = [
     range: { start: 0, end: 0.4 },
     iconClassNames: [
       // "wi-lightning"
-      "wi-storm-showers",
+      "wi-storm-showers"
       // "wi-thunderstorm",
       // "wi-tsunami"
     ]
